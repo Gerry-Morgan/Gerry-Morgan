@@ -38,6 +38,10 @@ db = client[os.environ['DB_NAME']]
 # Initialize audit trail
 audit_trail = AuditTrail(db)
 
+# Initialize processors
+curriculum_processor = CurriculumProcessor()
+student_importer = StudentImporter()
+
 # LLM API Key
 EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY', '')
 
