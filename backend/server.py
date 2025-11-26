@@ -177,6 +177,19 @@ async def setup_school(school_data: SchoolSetupRequest, request: Request):
         {"$set": {"role": "principal"}}
     )
     
+    # Create staff record for principal
+    staff_doc = {
+        "id": str(uuid.uuid4()),
+        "user_id": user["id"],
+        "school_id": school_doc["id"],
+        "role": "principal",
+        "subjects": [],
+        "grades": [],
+        "access_level": {"full_access": True},
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.staff.insert_one(staff_doc)
+    
     # Log audit
     await audit_trail.log_action("school_created", user["id"], school_doc)
     
