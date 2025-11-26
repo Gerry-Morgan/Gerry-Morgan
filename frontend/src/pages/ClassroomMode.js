@@ -32,6 +32,18 @@ export default function ClassroomMode() {
     notes: '',
     context: ''
   });
+  const [attendanceDate, setAttendanceDate] = useState(new Date().toISOString().split('T')[0]);
+  const [attendanceRecords, setAttendanceRecords] = useState({});
+  const [showAssessmentDialog, setShowAssessmentDialog] = useState(false);
+  const [assessment, setAssessment] = useState({
+    student_id: '',
+    subject_id: 'general',
+    assessment_type: 'quiz',
+    weight: 10,
+    marks: 0,
+    max_marks: 100
+  });
+  const [activeTab, setActiveTab] = useState('observations');
 
   useEffect(() => {
     fetchData();
