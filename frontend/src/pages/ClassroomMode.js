@@ -245,63 +245,181 @@ export default function ClassroomMode() {
         </Tabs>
 
         <div className="grid lg:grid-cols-3 gap-6">
-          {/* Student Roster */}
-          <div className="lg:col-span-2">
-            <Card className="border-none shadow-lg bg-white">
-              <CardHeader>
-                <CardTitle>Student Roster</CardTitle>
-                <div className="relative mt-4">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <Input
-                    type="text"
-                    placeholder="Search students..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
-                    data-testid="student-search"
-                  />
-                </div>
-              </CardHeader>
-              <CardContent>
-                {filteredStudents.length > 0 ? (
-                  <div className="space-y-3">
+          {/* Observations Tab */}
+          {activeTab === 'observations' && (
+            <div className="lg:col-span-2">
+              <Card className="border-none shadow-lg bg-white">
+                <CardHeader>
+                  <CardTitle>Student Roster</CardTitle>
+                  <div className="relative mt-4">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <Input
+                      type="text"
+                      placeholder="Search students..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10"
+                      data-testid="student-search"
+                    />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  {filteredStudents.length > 0 ? (
+                    <div className="space-y-3">
+                      {filteredStudents.map((student) => (
+                        <div
+                          key={student.id}
+                          data-testid={`student-card-${student.id}`}
+                          className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                              {student.name.charAt(0)}
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-gray-900">{student.name}</h3>
+                              <p className="text-sm text-gray-600">
+                                Grade {student.grade} {student.has_iep && <span className="text-orange-600">*</span>}
+                              </p>
+                            </div>
+                          </div>
+                          <Button
+                            onClick={() => handleRecordObservation(student)}
+                            data-testid={`record-observation-${student.id}`}
+                            size="sm"
+                            className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700"
+                          >
+                            <Plus className="h-4 w-4 mr-2" />
+                            Record
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12">
+                      <p className="text-gray-500">No students found</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Attendance Tab */}
+          {activeTab === 'attendance' && (
+            <div className="lg:col-span-2">
+              <Card className="border-none shadow-lg bg-white">
+                <CardHeader>
+                  <div className="flex justify-between items-center">
+                    <CardTitle>Record Attendance</CardTitle>
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        type="date"
+                        value={attendanceDate}
+                        onChange={(e) => setAttendanceDate(e.target.value)}
+                        className="w-40"
+                        data-testid="attendance-date"
+                      />
+                      <Button
+                        onClick={handleMarkAllPresent}
+                        variant="outline"
+                        size="sm"
+                        data-testid="mark-all-present"
+                      >
+                        Mark All Present
+                      </Button>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3 mb-6">
                     {filteredStudents.map((student) => (
                       <div
                         key={student.id}
-                        data-testid={`student-card-${student.id}`}
-                        className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                        className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
                       >
                         <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                          <div className="w-10 h-10 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                             {student.name.charAt(0)}
                           </div>
-                          <div>
-                            <h3 className="font-semibold text-gray-900">{student.name}</h3>
-                            <p className="text-sm text-gray-600">
-                              Grade {student.grade} {student.has_iep && <span className="text-orange-600">*</span>}
-                            </p>
-                          </div>
+                          <span className="font-medium text-gray-900">{student.name}</span>
                         </div>
-                        <Button
-                          onClick={() => handleRecordObservation(student)}
-                          data-testid={`record-observation-${student.id}`}
-                          size="sm"
-                          className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700"
+                        <Select
+                          value={attendanceRecords[student.id] || ''}
+                          onValueChange={(value) => handleAttendanceChange(student.id, value)}
                         >
-                          <Plus className="h-4 w-4 mr-2" />
-                          Record
-                        </Button>
+                          <SelectTrigger className="w-32">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="present">Present</SelectItem>
+                            <SelectItem value="absent">Absent</SelectItem>
+                            <SelectItem value="late">Late</SelectItem>
+                            <SelectItem value="excused">Excused</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                     ))}
                   </div>
-                ) : (
-                  <div className="text-center py-12">
-                    <p className="text-gray-500">No students found</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
+                  <Button
+                    onClick={handleSaveAttendance}
+                    disabled={Object.keys(attendanceRecords).length === 0}
+                    className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                    data-testid="save-attendance"
+                  >
+                    <CheckCircle2 className="h-4 w-4 mr-2" />
+                    Save Attendance ({Object.keys(attendanceRecords).length} students)
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Assessments Tab */}
+          {activeTab === 'assessments' && (
+            <div className="lg:col-span-2">
+              <Card className="border-none shadow-lg bg-white">
+                <CardHeader>
+                  <CardTitle>Record Assessments</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {filteredStudents.length > 0 ? (
+                    <div className="space-y-3">
+                      {filteredStudents.map((student) => (
+                        <div
+                          key={student.id}
+                          className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                              {student.name.charAt(0)}
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-gray-900">{student.name}</h3>
+                              <p className="text-sm text-gray-600">Grade {student.grade}</p>
+                            </div>
+                          </div>
+                          <Button
+                            onClick={() => handleOpenAssessment(student)}
+                            size="sm"
+                            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                            data-testid={`add-assessment-${student.id}`}
+                          >
+                            <Plus className="h-4 w-4 mr-2" />
+                            Add Assessment
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12">
+                      <p className="text-gray-500">No students found</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          )}
 
           {/* Inference Panel */}
           <div>
