@@ -228,10 +228,10 @@ export default function Students() {
                   </div>
                   <Button type="submit" className="w-full">Add Student</Button>
                 </form>
-              </DialogContent>
-            </Dialog>
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
-        </div>
 
         <div className="mb-6">
           <div className="relative">
