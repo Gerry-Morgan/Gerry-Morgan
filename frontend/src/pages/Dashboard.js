@@ -193,6 +193,17 @@ export default function Dashboard() {
             <FileText className="h-8 w-8" />
             <span className="font-semibold">Reports</span>
           </Button>
+
+          {user?.role === 'principal' && (
+            <Button
+              onClick={() => navigate('/staff')}
+              data-testid="staff-btn"
+              className="h-auto py-6 bg-gradient-to-br from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 flex-col items-center space-y-2"
+            >
+              <Users className="h-8 w-8" />
+              <span className="font-semibold">Staff Management</span>
+            </Button>
+          )}
         </div>
 
         {/* Recent Activity */}
