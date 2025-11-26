@@ -191,7 +191,7 @@ export default function Students() {
                     Add Student
                   </Button>
                 </DialogTrigger>
-              <DialogContent>
+                <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Add New Student</DialogTitle>
                   <DialogDescription>Enter student information below</DialogDescription>
