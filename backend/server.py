@@ -17,6 +17,8 @@ from models import *
 from auth import get_current_user
 from audit import AuditTrail
 from emergentintegrations.llm.chat import LlmChat, UserMessage
+from curriculum_processor import CurriculumProcessor
+from student_importer import StudentImporter
 
 # PDF generation
 from reportlab.lib.pagesizes import letter
