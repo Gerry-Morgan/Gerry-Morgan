@@ -591,6 +591,44 @@ async def generate_student_report_html(student_id: str, request: Request):
         }
     }
 
+# ============= ASSESSMENTS =============
+
+@api_router.post("/assessments")
+async def create_assessment(request: Request):
+    """Create an assessment record"""
+    user = await get_current_user(request, db)
+    data = await request.json()
+    
+    assessment_doc = {
+        "id": str(uuid.uuid4()),
+        "student_id": data["student_id"],
+        "subject_id": data["subject_id"],
+        "assessment_type": data["assessment_type"],
+        "weight": float(data["weight"]),
+        "marks": float(data["marks"]),
+        "max_marks": float(data.get("max_marks", 100)),
+        "date": datetime.now(timezone.utc).isoformat(),
+        "teacher_id": user["id"],
+        "linked_inferences": data.get("linked_inferences", [])
+    }
+    
+    await db.assessments.insert_one(assessment_doc)
+    await audit_trail.log_action("assessment_created", user["id"], {"assessment_id": assessment_doc["id"]})
+    
+    return {"assessment_id": assessment_doc["id"], "message": "Assessment recorded"}
+
+@api_router.get("/assessments/{student_id}")
+async def get_student_assessments(student_id: str, request: Request):
+    """Get student assessments"""
+    user = await get_current_user(request, db)
+    
+    assessments = await db.assessments.find(
+        {"student_id": student_id},
+        {"_id": 0}
+    ).sort("date", -1).to_list(1000)
+    
+    return assessments
+
 # ============= DASHBOARD STATS =============
 
 @api_router.get("/dashboard/stats")
