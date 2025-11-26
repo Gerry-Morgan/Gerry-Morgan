@@ -26,13 +26,22 @@ export default function Landing() {
               </div>
               <span className="text-2xl font-bold text-gray-900">LPAI</span>
             </div>
-            <Button 
-              onClick={handleLogin}
-              data-testid="login-button"
-              className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-6 py-2 rounded-full font-semibold"
-            >
-              Sign In
-            </Button>
+            <div className="flex items-center space-x-4">
+              <Button 
+                onClick={() => window.location.href = '/about'}
+                variant="ghost"
+                className="text-gray-700 hover:text-cyan-600"
+              >
+                Learn More
+              </Button>
+              <Button 
+                onClick={handleLogin}
+                data-testid="login-button"
+                className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-6 py-2 rounded-full font-semibold"
+              >
+                Sign In
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
