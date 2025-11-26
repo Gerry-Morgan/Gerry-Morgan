@@ -11,6 +11,7 @@ import AuthCallback from './pages/AuthCallback';
 import CurriculumManager from './pages/CurriculumManager';
 import About from './pages/About';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import GlobalLayaChat from './components/GlobalLayaChat';
 import './App.css';
 
 function PrivateRoute({ children }) {
@@ -24,7 +25,14 @@ function PrivateRoute({ children }) {
     );
   }
   
-  return user ? children : <Navigate to="/" />;
+  return user ? (
+    <>
+      {children}
+      <GlobalLayaChat />
+    </>
+  ) : (
+    <Navigate to="/" />
+  );
 }
 
 function App() {
