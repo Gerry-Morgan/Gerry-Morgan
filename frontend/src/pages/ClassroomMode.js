@@ -566,6 +566,118 @@ export default function ClassroomMode() {
           </form>
         </DialogContent>
       </Dialog>
+
+      {/* Record Assessment Dialog */}
+      <Dialog open={showAssessmentDialog} onOpenChange={setShowAssessmentDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Record Assessment</DialogTitle>
+            <DialogDescription>
+              Recording assessment for {selectedStudent?.name}
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmitAssessment} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="subject">Subject</Label>
+              <Select
+                value={assessment.subject_id}
+                onValueChange={(value) => setAssessment({ ...assessment, subject_id: value })}
+                required
+              >
+                <SelectTrigger id="subject">
+                  <SelectValue placeholder="Select subject" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="general">General</SelectItem>
+                  <SelectItem value="math">Mathematics</SelectItem>
+                  <SelectItem value="english">English</SelectItem>
+                  <SelectItem value="science">Science</SelectItem>
+                  <SelectItem value="social_studies">Social Studies</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="assessment_type">Assessment Type</Label>
+              <Select
+                value={assessment.assessment_type}
+                onValueChange={(value) => setAssessment({ ...assessment, assessment_type: value })}
+                required
+              >
+                <SelectTrigger id="assessment_type">
+                  <SelectValue placeholder="Select type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="quiz">Quiz</SelectItem>
+                  <SelectItem value="test">Test</SelectItem>
+                  <SelectItem value="assignment">Assignment</SelectItem>
+                  <SelectItem value="project">Project</SelectItem>
+                  <SelectItem value="participation">Participation</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="marks">Marks Earned</Label>
+                <Input
+                  id="marks"
+                  type="number"
+                  min="0"
+                  step="0.1"
+                  value={assessment.marks}
+                  onChange={(e) => setAssessment({ ...assessment, marks: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="max_marks">Maximum Marks</Label>
+                <Input
+                  id="max_marks"
+                  type="number"
+                  min="1"
+                  step="0.1"
+                  value={assessment.max_marks}
+                  onChange={(e) => setAssessment({ ...assessment, max_marks: e.target.value })}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="weight">Weight (%)</Label>
+              <Input
+                id="weight"
+                type="number"
+                min="0"
+                max="100"
+                step="0.1"
+                value={assessment.weight}
+                onChange={(e) => setAssessment({ ...assessment, weight: e.target.value })}
+                required
+              />
+            </div>
+
+            <div className="flex justify-end space-x-3">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowAssessmentDialog(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                data-testid="submit-assessment"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+              >
+                <CheckCircle2 className="h-4 w-4 mr-2" />
+                Record Assessment
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
