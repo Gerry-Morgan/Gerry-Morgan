@@ -38,6 +38,7 @@ function App() {
           <Route path="/students" element={<PrivateRoute><Students /></PrivateRoute>} />
           <Route path="/classroom" element={<PrivateRoute><ClassroomMode /></PrivateRoute>} />
           <Route path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
+          <Route path="/curriculum" element={<PrivateRoute><CurriculumManager /></PrivateRoute>} />
         </Routes>
         <Toaster position="top-right" />
       </BrowserRouter>
