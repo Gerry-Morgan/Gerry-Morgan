@@ -50,6 +50,7 @@ function App() {
           <Route path="/classroom" element={<PrivateRoute><ClassroomMode /></PrivateRoute>} />
           <Route path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
           <Route path="/curriculum" element={<PrivateRoute><CurriculumManager /></PrivateRoute>} />
+          <Route path="/staff" element={<PrivateRoute><StaffManagement /></PrivateRoute>} />
         </Routes>
         <Toaster position="top-right" />
       </BrowserRouter>
