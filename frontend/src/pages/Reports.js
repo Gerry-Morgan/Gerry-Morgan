@@ -104,6 +104,59 @@ export default function Reports() {
     }
   };
 
+  const generateBatchReports = async () => {
+    if (!selectedGrade) {
+      toast.error('Please select a grade');
+      return;
+    }
+
+    setBatchGenerating(true);
+
+    try {
+      const gradeStudents = students.filter(s => s.grade === selectedGrade);
+      
+      if (gradeStudents.length === 0) {
+        toast.error('No students found in selected grade');
+        setBatchGenerating(false);
+        return;
+      }
+
+      toast.info(`Generating ${gradeStudents.length} reports...`);
+
+      // Generate all reports
+      for (const student of gradeStudents) {
+        const response = await axios.get(
+          `${API}/reports/student/${student.id}/pdf`,
+          {
+            headers: { Authorization: `Bearer ${sessionToken}` },
+            responseType: 'blob'
+          }
+        );
+
+        // Download each PDF
+        const blob = new Blob([response.data], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `report_${student.name.replace(/\s+/g, '_')}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        // Small delay to avoid overwhelming the browser
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+
+      toast.success(`Successfully generated ${gradeStudents.length} reports!`);
+    } catch (error) {
+      console.error('Error generating batch reports:', error);
+      toast.error('Failed to generate batch reports');
+    } finally {
+      setBatchGenerating(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-blue-50 to-sky-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
