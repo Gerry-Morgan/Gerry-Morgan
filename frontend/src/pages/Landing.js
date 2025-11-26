@@ -76,6 +76,8 @@ export default function Landing() {
                 Get Started Free
               </Button>
               <Button 
+                onClick={() => setShowDemo(true)}
+                data-testid="watch-demo-button"
                 variant="outline"
                 className="border-2 border-cyan-600 text-cyan-600 hover:bg-cyan-50 px-8 py-6 rounded-full text-lg font-semibold"
               >
