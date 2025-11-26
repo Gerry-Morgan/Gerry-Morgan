@@ -166,6 +166,15 @@ export default function Dashboard() {
           </Button>
 
           <Button
+            onClick={() => navigate('/curriculum')}
+            data-testid="curriculum-btn"
+            className="h-auto py-6 bg-gradient-to-br from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 flex-col items-center space-y-2"
+          >
+            <BookOpen className="h-8 w-8" />
+            <span className="font-semibold">Curriculum</span>
+          </Button>
+
+          <Button
             onClick={() => navigate('/reports')}
             data-testid="reports-btn"
             className="h-auto py-6 bg-gradient-to-br from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 flex-col items-center space-y-2"
