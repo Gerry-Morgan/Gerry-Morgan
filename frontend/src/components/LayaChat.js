@@ -34,6 +34,45 @@ export default function LayaChat({ onClose }) {
     scrollToBottom();
   }, [messages]);
 
+  // Text-to-speech function
+  const speak = (text) => {
+    if (!voiceEnabled || !synthRef.current) return;
+    
+    // Cancel any ongoing speech
+    synthRef.current.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.9;
+    utterance.pitch = 1.1;
+    utterance.volume = 1;
+    
+    // Try to use a female voice if available
+    const voices = synthRef.current.getVoices();
+    const femaleVoice = voices.find(voice => 
+      voice.name.includes('Female') || 
+      voice.name.includes('Samantha') ||
+      voice.name.includes('Victoria') ||
+      voice.name.includes('Google US English Female')
+    );
+    if (femaleVoice) {
+      utterance.voice = femaleVoice;
+    }
+    
+    utterance.onstart = () => setSpeaking(true);
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    
+    synthRef.current.speak(utterance);
+  };
+
+  const toggleVoice = () => {
+    if (voiceEnabled && speaking) {
+      synthRef.current.cancel();
+      setSpeaking(false);
+    }
+    setVoiceEnabled(!voiceEnabled);
+  };
+
   const handleSend = async () => {
     if (!input.trim() || loading) return;
 
