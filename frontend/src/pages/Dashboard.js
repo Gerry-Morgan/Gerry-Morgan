@@ -210,6 +210,9 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Demo Tour */}
+      {showDemo && <DemoTour onComplete={() => setShowDemo(false)} />}
     </div>
   );
 }
