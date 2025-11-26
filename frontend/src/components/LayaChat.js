@@ -103,6 +103,11 @@ export default function LayaChat({ onClose }) {
       };
 
       setMessages(prev => [...prev, assistantMessage]);
+      
+      // Speak the response
+      if (voiceEnabled) {
+        speak(response.data.response);
+      }
     } catch (error) {
       console.error('Chat error:', error);
       setMessages(prev => [
