@@ -611,6 +611,178 @@ async def get_dashboard_stats(request: Request):
         "reports": 0
     }
 
+# ============= BULK STUDENT IMPORT =============
+
+@api_router.post("/students/import")
+async def import_students(request: Request):
+    """Import students from CSV or Excel file"""
+    user = await get_current_user(request, db)
+    
+    staff = await db.staff.find_one({"user_id": user["id"]})
+    if not staff:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    form = await request.form()
+    file = form.get("file")
+    
+    if not file:
+        raise HTTPException(status_code=400, detail="No file provided")
+    
+    file_content = await file.read()
+    filename = file.filename
+    
+    try:
+        # Parse file based on type
+        if filename.lower().endswith('.csv'):
+            students_data = student_importer.parse_csv(file_content)
+        elif filename.lower().endswith(('.xlsx', '.xls')):
+            students_data = student_importer.parse_excel(file_content)
+        else:
+            raise HTTPException(status_code=400, detail="Unsupported file format. Use CSV or Excel.")
+        
+        # Validate students
+        validation = student_importer.validate_students(students_data)
+        
+        if validation['valid'] == 0:
+            raise HTTPException(status_code=400, detail=f"No valid students found. Errors: {validation['errors']}")
+        
+        # Import valid students
+        imported_count = 0
+        for student_data in validation['students']:
+            student_doc = {
+                "id": str(uuid.uuid4()),
+                "name": student_data["name"],
+                "grade": student_data["grade"],
+                "homeroom": student_data.get("homeroom"),
+                "has_iep": student_data.get("has_iep", False),
+                "iep_details": {},
+                "school_id": staff["school_id"],
+                "parent_ids": [],
+                "created_at": datetime.now(timezone.utc).isoformat()
+            }
+            await db.students.insert_one(student_doc)
+            imported_count += 1
+        
+        # Log audit
+        await audit_trail.log_action(
+            "students_bulk_imported",
+            user["id"],
+            {"count": imported_count, "filename": filename}
+        )
+        
+        return {
+            "success": True,
+            "imported": imported_count,
+            "total": validation['total'],
+            "errors": validation['errors']
+        }
+    
+    except Exception as e:
+        logger.error(f"Import error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+# ============= CURRICULUM PROCESSING =============
+
+@api_router.post("/curriculum/upload")
+async def upload_curriculum(request: Request):
+    """Upload and process curriculum document"""
+    user = await get_current_user(request, db)
+    
+    staff = await db.staff.find_one({"user_id": user["id"]})
+    if not staff:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    form = await request.form()
+    file = form.get("file")
+    subject = form.get("subject")
+    grade = form.get("grade")
+    
+    if not file:
+        raise HTTPException(status_code=400, detail="No file provided")
+    if not subject or not grade:
+        raise HTTPException(status_code=400, detail="Subject and grade are required")
+    
+    file_content = await file.read()
+    filename = file.filename
+    
+    try:
+        # Process curriculum document
+        inferences = await curriculum_processor.process_curriculum_document(
+            file_content,
+            filename,
+            subject,
+            grade
+        )
+        
+        # Store inferences in database
+        stored_count = 0
+        inference_ids = []
+        
+        for inference_data in inferences:
+            inference_doc = {
+                "id": str(uuid.uuid4()),
+                "subject_id": subject,
+                "grade": grade,
+                "description": inference_data["description"],
+                "type": "curriculum",
+                "strand": inference_data.get("strand", "General"),
+                "level": inference_data.get("level", "intermediate"),
+                "created_by": None,
+                "is_custom": False,
+                "school_id": staff["school_id"],
+                "created_at": datetime.now(timezone.utc).isoformat()
+            }
+            await db.inferences.insert_one(inference_doc)
+            inference_ids.append(inference_doc["id"])
+            stored_count += 1
+        
+        # Log audit
+        await audit_trail.log_action(
+            "curriculum_processed",
+            user["id"],
+            {
+                "filename": filename,
+                "subject": subject,
+                "grade": grade,
+                "inferences_created": stored_count
+            }
+        )
+        
+        return {
+            "success": True,
+            "inferences_created": stored_count,
+            "inference_ids": inference_ids,
+            "inferences": inferences
+        }
+    
+    except Exception as e:
+        logger.error(f"Curriculum processing error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/curriculum/subjects")
+async def get_subjects(request: Request):
+    """Get list of subjects"""
+    user = await get_current_user(request, db)
+    
+    staff = await db.staff.find_one({"user_id": user["id"]})
+    if not staff:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    subjects = await db.subjects.find({"school_id": staff["school_id"]}, {"_id": 0}).to_list(100)
+    
+    # If no subjects, return default list
+    if not subjects:
+        subjects = [
+            {"id": "math", "name": "Mathematics", "grades": []},
+            {"id": "english", "name": "English Language Arts", "grades": []},
+            {"id": "science", "name": "Science", "grades": []},
+            {"id": "social", "name": "Social Studies", "grades": []},
+            {"id": "art", "name": "Art", "grades": []},
+            {"id": "pe", "name": "Physical Education", "grades": []}
+        ]
+    
+    return subjects
+
 # Include router
 app.include_router(api_router)
 
