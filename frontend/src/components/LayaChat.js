@@ -140,17 +140,30 @@ export default function LayaChat({ onClose }) {
             </div>
             <div>
               <CardTitle className="text-lg">Chat with Laya</CardTitle>
-              <p className="text-xs opacity-90">Your AI Assistant</p>
+              <p className="text-xs opacity-90">
+                {speaking ? '🎤 Speaking...' : 'Your AI Assistant'}
+              </p>
             </div>
           </div>
-          <Button
-            onClick={onClose}
-            variant="ghost"
-            size="sm"
-            className="text-white hover:bg-white/20"
-          >
-            <X className="h-5 w-5" />
-          </Button>
+          <div className="flex items-center space-x-2">
+            <Button
+              onClick={toggleVoice}
+              variant="ghost"
+              size="sm"
+              className="text-white hover:bg-white/20"
+              title={voiceEnabled ? 'Disable voice' : 'Enable voice'}
+            >
+              {voiceEnabled ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
+            </Button>
+            <Button
+              onClick={onClose}
+              variant="ghost"
+              size="sm"
+              className="text-white hover:bg-white/20"
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
         </CardHeader>
         
         <CardContent className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
