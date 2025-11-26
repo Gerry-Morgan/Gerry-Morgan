@@ -246,6 +246,9 @@ export default function Landing() {
           </p>
         </div>
       </footer>
+
+      {/* Demo Tour */}
+      {showDemo && <DemoTour onComplete={() => setShowDemo(false)} />}
     </div>
   );
 }
