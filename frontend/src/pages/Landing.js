@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { GraduationCap, Users, BarChart3, Sparkles, CheckCircle2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import DemoTour from '../components/DemoTour';
 
 const EMERGENT_AUTH_URL = "https://auth.emergentagent.com/?redirect=";
 
 export default function Landing() {
   const navigate = useNavigate();
+  const [showDemo, setShowDemo] = useState(false);
   const redirectUrl = encodeURIComponent(`${window.location.origin}/auth/callback`);
 
   const handleLogin = () => {
