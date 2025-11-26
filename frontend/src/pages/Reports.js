@@ -318,6 +318,62 @@ export default function Reports() {
                 </CardContent>
               </Card>
             )}
+
+            {/* Batch Report Generation */}
+            <Card className="border-none shadow-lg bg-white mt-6">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <FileText className="h-5 w-5 mr-2 text-purple-600" />
+                  Batch Report Generation
+                </CardTitle>
+                <CardDescription>
+                  Generate reports for all students in a grade
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="grade-select">Select Grade</Label>
+                  <Select value={selectedGrade} onValueChange={setSelectedGrade}>
+                    <SelectTrigger id="grade-select" data-testid="grade-select">
+                      <SelectValue placeholder="Choose a grade" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[...new Set(students.map(s => s.grade))].sort().map((grade) => (
+                        <SelectItem key={grade} value={grade}>
+                          Grade {grade} ({students.filter(s => s.grade === grade).length} students)
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <Button
+                  onClick={generateBatchReports}
+                  disabled={batchGenerating || !selectedGrade}
+                  data-testid="generate-batch-reports"
+                  className="w-full h-12 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                >
+                  {batchGenerating ? (
+                    <span className="flex items-center">
+                      <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-3"></div>
+                      Generating Batch Reports...
+                    </span>
+                  ) : (
+                    <span className="flex items-center">
+                      <Download className="h-5 w-5 mr-2" />
+                      Generate Batch Reports
+                    </span>
+                  )}
+                </Button>
+
+                <div className="bg-purple-50 p-4 rounded-lg">
+                  <p className="text-sm text-gray-700">
+                    <strong>Note:</strong> All reports will be downloaded as separate PDF files. 
+                    This may take a few moments depending on the number of students.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Info Panel */}
