@@ -108,6 +108,89 @@ export default function ClassroomMode() {
     }
   };
 
+  const handleAttendanceChange = (studentId, status) => {
+    setAttendanceRecords(prev => ({
+      ...prev,
+      [studentId]: status
+    }));
+  };
+
+  const handleMarkAllPresent = () => {
+    const records = {};
+    filteredStudents.forEach(student => {
+      records[student.id] = 'present';
+    });
+    setAttendanceRecords(records);
+    toast.success('All students marked present');
+  };
+
+  const handleSaveAttendance = async () => {
+    try {
+      const promises = Object.entries(attendanceRecords).map(([studentId, status]) =>
+        axios.post(
+          `${API}/attendance`,
+          {
+            student_id: studentId,
+            date: attendanceDate,
+            status: status,
+            notes: ''
+          },
+          { headers: { Authorization: `Bearer ${sessionToken}` } }
+        )
+      );
+
+      await Promise.all(promises);
+      toast.success(`Attendance saved for ${Object.keys(attendanceRecords).length} students`);
+      setAttendanceRecords({});
+    } catch (error) {
+      console.error('Error saving attendance:', error);
+      toast.error('Failed to save attendance');
+    }
+  };
+
+  const handleOpenAssessment = (student) => {
+    setSelectedStudent(student);
+    setAssessment({
+      ...assessment,
+      student_id: student.id
+    });
+    setShowAssessmentDialog(true);
+  };
+
+  const handleSubmitAssessment = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post(
+        `${API}/assessments`,
+        {
+          student_id: assessment.student_id,
+          subject_id: assessment.subject_id,
+          assessment_type: assessment.assessment_type,
+          weight: parseFloat(assessment.weight),
+          marks: parseFloat(assessment.marks),
+          max_marks: parseFloat(assessment.max_marks),
+          linked_inferences: []
+        },
+        { headers: { Authorization: `Bearer ${sessionToken}` } }
+      );
+
+      toast.success('Assessment recorded successfully!');
+      setShowAssessmentDialog(false);
+      setAssessment({
+        student_id: '',
+        subject_id: 'general',
+        assessment_type: 'quiz',
+        weight: 10,
+        marks: 0,
+        max_marks: 100
+      });
+    } catch (error) {
+      console.error('Error recording assessment:', error);
+      toast.error('Failed to record assessment');
+    }
+  };
+
   const sampleInferences = [
     { id: 'inf-1', description: 'Demonstrates understanding of fractions' },
     { id: 'inf-2', description: 'Solves multi-step word problems' },
