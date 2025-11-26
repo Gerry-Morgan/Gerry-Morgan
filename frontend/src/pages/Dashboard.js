@@ -14,7 +14,6 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [stats, setStats] = useState({ students: 0, observations: 0, reports: 0 });
   const [school, setSchool] = useState(null);
-  const [showChat, setShowChat] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
