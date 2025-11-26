@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, MessageSquare } from 'lucide-react';
+import { X, Send, MessageSquare, Volume2, VolumeX } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
@@ -21,7 +21,10 @@ export default function LayaChat({ onClose }) {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [sessionId] = useState(() => `chat-${Date.now()}`);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
+  const [speaking, setSpeaking] = useState(false);
   const messagesEndRef = useRef(null);
+  const synthRef = useRef(window.speechSynthesis);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
