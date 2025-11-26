@@ -23,6 +23,8 @@ export default function Reports() {
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
   const [reportData, setReportData] = useState(null);
+  const [selectedGrade, setSelectedGrade] = useState('');
+  const [batchGenerating, setBatchGenerating] = useState(false);
 
   useEffect(() => {
     fetchStudents();
