@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GraduationCap, Brain, BarChart3, Shield, Users, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
+import { GraduationCap, Brain, BarChart3, Shield, Users, Zap, CheckCircle2, ArrowRight, Upload } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 
