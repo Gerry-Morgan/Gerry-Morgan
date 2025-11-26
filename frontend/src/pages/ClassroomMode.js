@@ -224,8 +224,25 @@ export default function ClassroomMode() {
 
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Classroom Mode</h1>
-          <p className="text-gray-600">Record observations and track student progress in real-time</p>
+          <p className="text-gray-600">Record observations, attendance, and assessments in real-time</p>
         </div>
+
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+          <TabsList className="grid w-full grid-cols-3 max-w-md">
+            <TabsTrigger value="observations" data-testid="observations-tab">
+              <ClipboardCheck className="h-4 w-4 mr-2" />
+              Observations
+            </TabsTrigger>
+            <TabsTrigger value="attendance" data-testid="attendance-tab">
+              <Calendar className="h-4 w-4 mr-2" />
+              Attendance
+            </TabsTrigger>
+            <TabsTrigger value="assessments" data-testid="assessments-tab">
+              <FileEdit className="h-4 w-4 mr-2" />
+              Assessments
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
 
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Student Roster */}
