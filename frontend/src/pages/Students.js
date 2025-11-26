@@ -20,6 +20,10 @@ export default function Students() {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [showAddDialog, setShowAddDialog] = useState(false);
+  const [showImportDialog, setShowImportDialog] = useState(false);
+  const [importFile, setImportFile] = useState(null);
+  const [importing, setImporting] = useState(false);
+  const fileInputRef = useRef(null);
   const [newStudent, setNewStudent] = useState({
     name: '',
     grade: '',
