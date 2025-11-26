@@ -8,6 +8,7 @@ import Reports from './pages/Reports';
 import Students from './pages/Students';
 import SchoolSetup from './pages/SchoolSetup';
 import AuthCallback from './pages/AuthCallback';
+import CurriculumManager from './pages/CurriculumManager';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import './App.css';
 
