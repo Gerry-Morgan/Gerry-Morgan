@@ -65,6 +65,58 @@ export default function Students() {
     }
   };
 
+  const handleImportStudents = async (e) => {
+    e.preventDefault();
+    if (!importFile) {
+      toast.error('Please select a file');
+      return;
+    }
+
+    setImporting(true);
+    const formData = new FormData();
+    formData.append('file', importFile);
+
+    try {
+      const response = await axios.post(
+        `${API}/students/import`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionToken}`,
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+
+      toast.success(`Successfully imported ${response.data.imported} students!`);
+      if (response.data.errors && response.data.errors.length > 0) {
+        toast.warning(`${response.data.errors.length} rows had errors`);
+      }
+      setShowImportDialog(false);
+      setImportFile(null);
+      fetchStudents();
+    } catch (error) {
+      console.error('Error importing students:', error);
+      toast.error(error.response?.data?.detail || 'Failed to import students');
+    } finally {
+      setImporting(false);
+    }
+  };
+
+  const downloadTemplate = () => {
+    const csvContent = 'name,grade,homeroom,iep\\nJohn Doe,8,Room 101,false\\nJane Smith,7,Room 102,false';
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'student_import_template.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+    toast.success('Template downloaded!');
+  };
+
   const filteredStudents = students.filter(student =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     student.grade.toLowerCase().includes(searchTerm.toLowerCase())
