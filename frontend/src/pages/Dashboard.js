@@ -104,9 +104,20 @@ export default function Dashboard() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Section */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back, {user?.name?.split(' ')[0]}! 👋</h1>
-          <p className="text-gray-600">Here's what's happening with your students today.</p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back, {user?.name?.split(' ')[0]}! 👋</h1>
+            <p className="text-gray-600">Here's what's happening with your students today.</p>
+          </div>
+          <Button
+            onClick={() => setShowDemo(true)}
+            data-testid="take-tour-button"
+            variant="outline"
+            className="flex items-center space-x-2 border-cyan-600 text-cyan-600 hover:bg-cyan-50"
+          >
+            <PlayCircle className="h-5 w-5" />
+            <span>Take a Tour</span>
+          </Button>
         </div>
 
         {/* Stats Cards */}
