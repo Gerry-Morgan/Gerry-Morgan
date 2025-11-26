@@ -10,6 +10,7 @@ import SchoolSetup from './pages/SchoolSetup';
 import AuthCallback from './pages/AuthCallback';
 import CurriculumManager from './pages/CurriculumManager';
 import About from './pages/About';
+import StaffManagement from './pages/StaffManagement';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import GlobalLayaChat from './components/GlobalLayaChat';
 import './App.css';
