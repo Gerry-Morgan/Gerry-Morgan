@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
-import { GraduationCap, Users, ClipboardList, MessageSquare, Settings, LogOut, BookOpen, FileText } from 'lucide-react';
+import { GraduationCap, Users, ClipboardList, Settings, LogOut, BookOpen, FileText } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import LayaChat from '../components/LayaChat';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${API_URL}/api`;
