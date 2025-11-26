@@ -136,13 +136,61 @@ export default function Students() {
           </Button>
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-bold text-gray-900">Students</h1>
-            <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
-              <DialogTrigger asChild>
-                <Button data-testid="add-student-button" className="bg-gradient-to-r from-cyan-600 to-blue-600">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Student
-                </Button>
-              </DialogTrigger>
+            <div className="flex space-x-3">
+              <Dialog open={showImportDialog} onOpenChange={setShowImportDialog}>
+                <DialogTrigger asChild>
+                  <Button data-testid="import-students-button" variant="outline" className="border-cyan-600 text-cyan-600 hover:bg-cyan-50">
+                    <Upload className="h-4 w-4 mr-2" />
+                    Import Students
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Import Students</DialogTitle>
+                    <DialogDescription>Upload a CSV or Excel file with student data</DialogDescription>
+                  </DialogHeader>
+                  <form onSubmit={handleImportStudents} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label>File Format</Label>
+                      <p className="text-sm text-gray-600">
+                        CSV or Excel file with columns: name, grade, homeroom, iep
+                      </p>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={downloadTemplate}
+                        className="w-full"
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Download Template
+                      </Button>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="file">Upload File</Label>
+                      <Input
+                        id="file"
+                        type="file"
+                        accept=".csv,.xlsx,.xls"
+                        onChange={(e) => setImportFile(e.target.files[0])}
+                        ref={fileInputRef}
+                        required
+                      />
+                    </div>
+                    <Button type="submit" disabled={importing} className="w-full">
+                      {importing ? 'Importing...' : 'Import Students'}
+                    </Button>
+                  </form>
+                </DialogContent>
+              </Dialog>
+              
+              <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
+                <DialogTrigger asChild>
+                  <Button data-testid="add-student-button" className="bg-gradient-to-r from-cyan-600 to-blue-600">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Student
+                  </Button>
+                </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Add New Student</DialogTitle>
