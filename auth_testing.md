@@ -30,15 +30,15 @@ print('User ID: ' + userId);
 
 ```bash
 # Test auth endpoint
-curl -X GET "https://education-ai-staging.preview.emergentagent.com/api/auth/me" \
+curl -X GET "https://student-insights-17.preview.emergentagent.com/api/auth/me" \
   -H "Authorization: Bearer YOUR_SESSION_TOKEN"
 
 # Test protected endpoints
-curl -X GET "https://education-ai-staging.preview.emergentagent.com/api/dashboard/stats" \
+curl -X GET "https://student-insights-17.preview.emergentagent.com/api/dashboard/stats" \
   -H "Authorization: Bearer YOUR_SESSION_TOKEN"
 
 # Test students endpoint
-curl -X GET "https://education-ai-staging.preview.emergentagent.com/api/students" \
+curl -X GET "https://student-insights-17.preview.emergentagent.com/api/students" \
   -H "Authorization: Bearer YOUR_SESSION_TOKEN"
 ```
 
@@ -55,7 +55,7 @@ await page.context().add_cookies([{
     "secure": true,
     "sameSite": "None"
 }]);
-await page.goto("https://education-ai-staging.preview.emergentagent.com");
+await page.goto("https://student-insights-17.preview.emergentagent.com");
 ```
 
 ## Success Indicators
