@@ -73,8 +73,8 @@ export default function About() {
           <CardContent className="space-y-8">
             <div className="prose prose-lg max-w-none">
               <p className="text-gray-700 text-lg leading-relaxed">
-                Traditional grading systems focus on test scores and final grades, but LPAI takes a fundamentally 
-                different approach. Instead of just recording grades, LPAI helps educators track <strong>observable 
+                Traditional grading systems focus on test scores and final grades, but E-Valu-iT takes a fundamentally 
+                different approach. Instead of just recording grades, E-Valu-iT helps educators track <strong>observable 
                 evidence</strong> of student learning linked to specific curriculum outcomes.
               </p>
               
@@ -364,7 +364,7 @@ export default function About() {
                 <div className="w-8 h-8 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-lg flex items-center justify-center">
                   <GraduationCap className="h-5 w-5 text-white" />
                 </div>
-                <span className="text-xl font-bold">LPAI</span>
+                <span className="text-xl font-bold">E-Valu-iT</span>
               </div>
               <p className="text-gray-400">
                 Transforming education through AI-powered inference-based assessment
