@@ -71,7 +71,7 @@ export default function Dashboard() {
                 <GraduationCap className="h-6 w-6 text-white" />
               </div>
               <div>
-                <span className="text-xl font-bold text-gray-900">LPAI</span>
+                <span className="text-xl font-bold text-gray-900">E-Valu-iT</span>
                 <p className="text-xs text-gray-500">{school?.school_name}</p>
               </div>
             </div>

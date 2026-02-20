@@ -24,7 +24,7 @@ export default function About() {
               <div className="w-10 h-10 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl flex items-center justify-center">
                 <GraduationCap className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-gray-900">LPAI</span>
+              <span className="text-2xl font-bold text-gray-900">E-Valu-iT</span>
             </div>
             <div className="flex items-center space-x-4">
               <Button 
@@ -49,15 +49,15 @@ export default function About() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-200 mb-6">
             <Brain className="h-5 w-5 text-cyan-600" />
-            <span className="text-sm font-medium text-gray-700">Learning Progress AI</span>
+            <span className="text-sm font-medium text-gray-700">E-Valu-iT Assessment Platform</span>
           </div>
           
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-            What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">LPAI</span>?
+            What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">E-Valu-iT</span>?
           </h1>
           
           <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
-            LPAI (Learning Progress AI) is a revolutionary educational assessment platform that transforms 
+            E-Valu-iT is a revolutionary educational assessment platform that transforms 
             how schools track and evaluate student learning through inference-based progress monitoring 
             and AI-powered insights.
           </p>
@@ -68,7 +68,7 @@ export default function About() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Card className="border-none shadow-2xl bg-white">
           <CardHeader>
-            <CardTitle className="text-3xl text-center">The LPAI Approach</CardTitle>
+            <CardTitle className="text-3xl text-center">The E-Valu-iT Approach</CardTitle>
           </CardHeader>
           <CardContent className="space-y-8">
             <div className="prose prose-lg max-w-none">
@@ -269,7 +269,7 @@ export default function About() {
       {/* Benefits */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Why Schools Choose LPAI</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Why Schools Choose E-Valu-iT</h2>
           
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
@@ -289,7 +289,7 @@ export default function About() {
             </div>
 
             <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-3xl">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Who Uses LPAI?</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Who Uses E-Valu-iT?</h3>
               <ul className="space-y-3 text-gray-700 text-lg">
                 <li><strong>Principals:</strong> Full system oversight and analytics</li>
                 <li><strong>Teachers:</strong> Quick observation recording and student insights</li>
@@ -395,7 +395,7 @@ export default function About() {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>© 2025 LPAI - Learning Progress AI. Powered by Emergent. All rights reserved.</p>
+            <p>© Gerry Morgan, Developed with Emergent. © 2025 E-Valu-iT. All rights reserved.</p>
           </div>
         </div>
       </footer>

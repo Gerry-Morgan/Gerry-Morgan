@@ -26,7 +26,7 @@ export default function Landing() {
               <div className="w-10 h-10 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl flex items-center justify-center">
                 <GraduationCap className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-gray-900">LPAI</span>
+              <span className="text-2xl font-bold text-gray-900">E-Valu-iT</span>
             </div>
             <div className="flex items-center space-x-4">
               <Button 
@@ -167,7 +167,7 @@ export default function Landing() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-                Why Educators Love LPAI
+                Why Educators Love E-Valu-iT
               </h2>
               <div className="space-y-4">
                 {[
@@ -217,7 +217,7 @@ export default function Landing() {
             Ready to Transform Student Assessment?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Join hundreds of schools using LPAI to track learning progress with AI
+            Join hundreds of schools using E-Valu-iT to track learning progress with AI
           </p>
           <Button 
             onClick={handleLogin}
@@ -236,13 +236,13 @@ export default function Landing() {
             <div className="w-8 h-8 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-lg flex items-center justify-center">
               <GraduationCap className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold">LPAI</span>
+            <span className="text-xl font-bold">E-Valu-iT</span>
           </div>
           <p className="text-gray-400">
-            Learning Progress AI - Powered by Emergent
+            © Gerry Morgan, Developed with Emergent
           </p>
           <p className="text-gray-500 text-sm mt-2">
-            © 2025 LPAI. All rights reserved.
+            © 2025 E-Valu-iT. All rights reserved.
           </p>
         </div>
       </footer>
