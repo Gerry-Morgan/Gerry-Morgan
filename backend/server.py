@@ -433,7 +433,7 @@ async def chat_with_laya(chat_req: ChatRequest, request: Request):
         school = await db.schools.find_one({"id": staff["school_id"]})
     
     # Build system message with context
-    system_message = f"""You are Laya, the friendly AI assistant for LPAI (Learning Progress AI).
+    system_message = f"""You are Laya, the friendly AI assistant for E-Valu-iT.
 You help educators with setting up their school, managing students, recording observations, and generating reports.
 
 Current user: {user['name']} ({user['role']})

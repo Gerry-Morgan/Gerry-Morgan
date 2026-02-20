@@ -5,15 +5,15 @@ import { Card, CardContent } from './ui/card';
 
 const tourSteps = [
   {
-    title: "Welcome to LPAI!",
-    content: "Hello! I'm Laya, your AI assistant for Learning Progress AI. I'll be your guide today as we explore how LPAI transforms student assessment through inference-based learning tracking. Let's take a tour of all the amazing features!",
+    title: "Welcome to E-Valu-iT!",
+    content: "Hello! I'm Laya, your AI assistant for E-Valu-iT. I'll be your guide today as we explore how E-Valu-iT transforms student assessment through inference-based learning tracking. Let's take a tour of all the amazing features!",
     highlight: null,
     position: "center",
     action: null
   },
   {
-    title: "What Makes LPAI Different?",
-    content: "Unlike traditional grading systems that focus only on test scores, LPAI tracks observable evidence of student learning. We record specific inferences - things teachers can actually see students doing - and link them to curriculum outcomes. This creates a rich, detailed picture of each student's true progress.",
+    title: "What Makes E-Valu-iT Different?",
+    content: "Unlike traditional grading systems that focus only on test scores, E-Valu-iT tracks observable evidence of student learning. We record specific inferences - things teachers can actually see students doing - and link them to curriculum outcomes. This creates a rich, detailed picture of each student's true progress.",
     highlight: null,
     position: "center",
     action: null
