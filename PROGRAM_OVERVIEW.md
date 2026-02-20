@@ -1,14 +1,14 @@
-# LPAI - Learning Progress AI
+# E-Valu-iT
 
-## 🎓 What is LPAI?
+## What is E-Valu-iT?
 
-LPAI (Learning Progress AI) is a revolutionary educational assessment platform that transforms how schools track and evaluate student learning through **inference-based progress monitoring** and **AI-powered insights**.
+E-Valu-iT is a revolutionary educational assessment platform that transforms how schools track and evaluate student learning through **inference-based progress monitoring** and **AI-powered insights**.
 
-Unlike traditional grading systems that focus solely on test scores, LPAI helps educators track **observable evidence** of student learning linked to specific curriculum outcomes, creating a rich, detailed picture of each student's true progress.
+Unlike traditional grading systems that focus solely on test scores, E-Valu-iT helps educators track **observable evidence** of student learning linked to specific curriculum outcomes, creating a rich, detailed picture of each student's true progress.
 
 ---
 
-## 🌟 Key Concepts
+## Key Concepts
 
 ### What are Inferences?
 
@@ -30,43 +30,43 @@ Each observation is assigned a qualifier indicating the student's current level:
 
 ---
 
-## 🚀 Core Features
+## Core Features
 
-### 1. **Laya - Your AI Assistant** 🤖
+### 1. **Laya - Your AI Assistant**
 - Conversational AI guide powered by Claude Sonnet 4
 - Voice-enabled (text-to-speech)
 - Helps with setup, answers questions, provides insights
 - Available throughout the platform
 
-### 2. **Classroom Mode** 📚
+### 2. **Classroom Mode**
 - Real-time observation recording during class
 - Quick-access student roster with search
 - Inference panel with common learning outcomes
 - Qualifier badges (D/M/I) with visual indicators
 - Support for IEP students (marked with asterisk)
 
-### 3. **Smart Reports** 📊
+### 3. **Smart Reports**
 - Generate PDF or HTML reports automatically
 - Includes qualifier distribution charts
 - Attendance summaries
 - AI-generated insights and recommendations
 - One-click generation for individual students or entire classes
 
-### 4. **Curriculum Processing** 🧠
+### 4. **Curriculum Processing**
 - Upload curriculum documents (PDF, DOCX, TXT)
 - AI automatically extracts learning outcomes
 - Converts outcomes to observable inferences
 - Tags with subject, grade, strand, and difficulty level
 - Saves hours of manual setup time
 
-### 5. **Bulk Student Import** 📥
+### 5. **Bulk Student Import**
 - Import from CSV or Excel files
 - Automatic column detection
 - Row-by-row validation with error reporting
 - Downloadable template for easy formatting
 - Support for: name, grade, homeroom, IEP status
 
-### 6. **Data Security** 🔒
+### 6. **Data Security**
 - Blockchain-inspired audit trail
 - Immutable record of all actions
 - Role-based access control
@@ -75,7 +75,7 @@ Each observation is assigned a qualifier indicating the student's current level:
 
 ---
 
-## 👥 Who Uses LPAI?
+## Who Uses E-Valu-iT?
 
 ### Principals
 - Full system oversight and analytics
@@ -107,7 +107,7 @@ Each observation is assigned a qualifier indicating the student's current level:
 
 ---
 
-## 🔄 How It Works
+## How It Works
 
 ### Step 1: School Setup
 Laya guides you through initial configuration:
@@ -146,7 +146,7 @@ AI automatically:
 
 ---
 
-## 🛠️ Technical Architecture
+## Technical Architecture
 
 ### Technology Stack
 - **Frontend**: React 19, TailwindCSS, Shadcn/UI
@@ -165,37 +165,37 @@ AI automatically:
 
 ---
 
-## 📈 Benefits
+## Benefits
 
 ### For Schools
-- ✅ Save 10+ hours per week on assessment documentation
-- ✅ Track learning progress beyond test scores
-- ✅ Generate professional reports in seconds
-- ✅ Meet compliance requirements automatically
-- ✅ Data-driven decision making
+- Save 10+ hours per week on assessment documentation
+- Track learning progress beyond test scores
+- Generate professional reports in seconds
+- Meet compliance requirements automatically
+- Data-driven decision making
 
 ### For Teachers
-- ✅ Quick observation recording (seconds per student)
-- ✅ AI-powered recommendations for interventions
-- ✅ Clear picture of each student's progress
-- ✅ Support for differentiated instruction
-- ✅ IEP tracking built-in
+- Quick observation recording (seconds per student)
+- AI-powered recommendations for interventions
+- Clear picture of each student's progress
+- Support for differentiated instruction
+- IEP tracking built-in
 
 ### For Parents
-- ✅ Understand what child is actually learning
-- ✅ See progress in specific skills
-- ✅ Meaningful conversations about education
-- ✅ Access reports anytime, anywhere
+- Understand what child is actually learning
+- See progress in specific skills
+- Meaningful conversations about education
+- Access reports anytime, anywhere
 
 ### For Students
-- ✅ Clear learning goals
-- ✅ Track own progress
-- ✅ Celebrate achievements
-- ✅ Identify areas for growth
+- Clear learning goals
+- Track own progress
+- Celebrate achievements
+- Identify areas for growth
 
 ---
 
-## 🔐 Security & Privacy
+## Security & Privacy
 
 ### Data Protection
 - All data encrypted in transit (HTTPS/TLS)
@@ -223,7 +223,7 @@ AI automatically:
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
 ### Scenario 1: Daily Classroom Observation
 **Teacher**: Ms. Johnson teaches Grade 8 Math
@@ -263,10 +263,10 @@ AI automatically:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### For Schools
-1. Visit the LPAI website
+1. Visit the E-Valu-iT website
 2. Click "Get Started Free"
 3. Sign in with Google (via Emergent OAuth)
 4. Complete school setup wizard (guided by Laya)
@@ -291,7 +291,7 @@ AI automatically:
 
 ---
 
-## 📞 Support & Resources
+## Support & Resources
 
 ### Documentation
 - User guides for each role
@@ -307,13 +307,13 @@ Available 24/7 within the platform:
 - Learn best practices
 
 ### Human Support
-- Email: support@lpai.education
+- Email: support@e-valu-it.education
 - Response time: 24-48 hours
 - Priority support for premium schools
 
 ---
 
-## 🔮 Roadmap
+## Roadmap
 
 ### Coming Soon
 - [ ] Mobile apps (iOS, Android)
@@ -334,9 +334,9 @@ Available 24/7 within the platform:
 
 ---
 
-## 💡 Philosophy
+## Philosophy
 
-LPAI is built on the belief that:
+E-Valu-iT is built on the belief that:
 
 1. **Learning is Observable**: True understanding can be witnessed in action
 2. **Progress is Non-Linear**: Students develop at different paces
@@ -347,9 +347,9 @@ LPAI is built on the belief that:
 
 ---
 
-## 🏆 Success Stories
+## Success Stories
 
-> "LPAI helped us move beyond letter grades to truly understanding what our students can do. Teachers love how quick it is to record observations, and parents appreciate the detailed insights." 
+> "E-Valu-iT helped us move beyond letter grades to truly understanding what our students can do. Teachers love how quick it is to record observations, and parents appreciate the detailed insights." 
 > — **Dr. Sarah Mitchell, Principal, Lincoln Middle School**
 
 > "As a math teacher, I can now see exactly which concepts each student has mastered and where they need support. The AI recommendations have been spot-on for planning interventions."
@@ -360,27 +360,24 @@ LPAI is built on the belief that:
 
 ---
 
-## 📄 License & Copyright
+## License & Copyright
 
-© 2025 LPAI - Learning Progress AI
-Powered by Emergent
-All rights reserved.
+© Gerry Morgan, Developed with Emergent
+© 2025 E-Valu-iT. All rights reserved.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-LPAI is committed to continuous improvement. We welcome:
+E-Valu-iT is committed to continuous improvement. We welcome:
 - Feature suggestions
 - Bug reports
 - User feedback
 - Integration requests
 - Research collaborations
 
-Contact: feedback@lpai.education
+Contact: feedback@e-valu-it.education
 
 ---
 
-**Transform assessment. Empower learning. Join LPAI today.**
-
-Visit: https://education-ai-staging.preview.emergentagent.com
+**Transform assessment. Empower learning. Join E-Valu-iT today.**
