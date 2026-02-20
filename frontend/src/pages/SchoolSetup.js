@@ -51,7 +51,7 @@ export default function SchoolSetup() {
           <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-2xl flex items-center justify-center">
             <GraduationCap className="h-12 w-12 text-white" />
           </div>
-          <CardTitle className="text-3xl font-bold text-gray-900">Welcome to LPAI!</CardTitle>
+          <CardTitle className="text-3xl font-bold text-gray-900">Welcome to E-Valu-iT!</CardTitle>
           <CardDescription className="text-lg text-gray-600 mt-2">
             Let's set up your school. This will only take a minute.
           </CardDescription>

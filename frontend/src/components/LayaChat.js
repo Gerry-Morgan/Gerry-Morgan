@@ -14,7 +14,7 @@ export default function LayaChat({ onClose }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hello! I'm Laya, your AI assistant for LPAI. How can I help you today?",
+      content: "Hello! I'm Laya, your AI assistant for E-Valu-iT. How can I help you today?",
       timestamp: new Date().toISOString()
     }
   ]);
